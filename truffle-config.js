@@ -23,13 +23,8 @@
  */
 
  const dotenv = require('dotenv');
+ const HDWalletProvider = require('@truffle/hdwallet-provider')
  dotenv.config();
-
-// const HDWallet = require('truffle-hdwallet-provider');
-// const infuraKey = "fj4jll3k.....";
-//
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 module.exports = {
   /**
@@ -55,7 +50,7 @@ module.exports = {
       development: {
         host: "127.0.0.1",
         port: 8545,
-        network_id: "*"
+        network_id: "*",
       },
       rinkeby: {
         provider: function() {
