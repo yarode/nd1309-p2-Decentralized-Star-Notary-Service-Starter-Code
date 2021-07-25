@@ -55,7 +55,9 @@ contract StarNotary is ERC721 {
 
     // Implement Task 1 lookUptokenIdToStarInfo
     function lookUpTokenIdToStarInfo (uint _tokenId) public view returns (string memory) {
-      return tokenIdToStarInfo[_tokenId].name;
+      string memory name = tokenIdToStarInfo[_tokenId].name;
+      require(keccak256(abi.encodePacked(name)) != keccak256(abi.encodePacked("")), "No star with this id");
+      return name;
     }
 
     // Implement Task 1 Exchange Stars function

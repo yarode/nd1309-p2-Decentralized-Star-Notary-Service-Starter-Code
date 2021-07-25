@@ -22,6 +22,9 @@
  *
  */
 
+ const dotenv = require('dotenv');
+ dotenv.config();
+
 // const HDWallet = require('truffle-hdwallet-provider');
 // const infuraKey = "fj4jll3k.....";
 //
@@ -46,11 +49,23 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    development: {
-      host: "127.0.0.1",     // Localhost (default: none)
-      port: 9545,            // Standard Ethereum port (default: none)
-      network_id: "*",       // Any network (default: none)
-    },
+
+    //Rinkeby settings
+    networks: {
+      development: {
+        host: "127.0.0.1",
+        port: 8545,
+        network_id: "*"
+      },
+      rinkeby: {
+        provider: function() {
+          return new HDWalletProvider(process.env.MNEMONIC, process.env.INFURA_URL);
+        },
+        network_id: 4,
+        gas: 4500000,
+        gasPrice: 10000000000,
+      }
+    }
 
     // Another network with more advanced options...
     // advanced: {
